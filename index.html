@@ -40,7 +40,38 @@
 .effect-test-buttons{display:flex;flex-wrap:wrap;gap:5px;margin:9px 0}
 .effect-test-buttons button{font-size:13px;background:#51417c}
 /* DEV EFFECT TEST STYLE END */
-</style><style>.status-book{border:2px solid #c6a354;background:linear-gradient(160deg,#171f42,#10152d)}.status-head{text-align:center;color:#ffdf8a;letter-spacing:.15em;font-weight:900;font-size:20px;margin-bottom:14px}.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:15px 0}.status-grid>div{background:#182449;border:1px solid #8a7448;border-radius:8px;padding:10px;min-width:0}.status-grid small{display:block;font-size:11px}.status-grid strong{display:block;font-size:13px;overflow-wrap:anywhere;margin-top:5px}#bodyhistory summary{cursor:pointer;color:#ffe2a2;margin:12px 0}</style><style>.loot-item{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #70608d;border-radius:9px;padding:9px;margin:7px 0;background:#1b2445}.loot-item span{font-size:13px}.loot-item button{white-space:nowrap;font-size:12px;padding:8px}.loot-item button:disabled{opacity:.5}</style></head><body><div id="bossEnding" class="boss-ending" onclick="advanceBossEnding()" role="button" tabindex="0" aria-label="タップで次へ"><h2 id="bossEndingTitle"></h2><img id="bossEndingImage" alt=""><p id="bossEndingText"></p><small>タップして続ける</small></div><main><h1>🐗 人生RPG <small>冒険者の書 v0.6.0</small></h1><div class="tabs"><button onclick="tab('home')">🏠 HOME</button><button onclick="tab('train')">📥 SYNC</button><button onclick="tab('rest')">🛌 REST</button><button onclick="tab('inventory')">🎁 装備</button><button onclick="tab('titles')">👑 称号</button><button onclick="tab('boss')">👹 BOSS</button><button onclick="tab('report')">📊 REPORT</button></div><section id="home" class="active"><div class="panel status-book">
+</style><style>.status-book{border:2px solid #c6a354;background:linear-gradient(160deg,#171f42,#10152d)}.status-head{text-align:center;color:#ffdf8a;letter-spacing:.15em;font-weight:900;font-size:20px;margin-bottom:14px}.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:15px 0}.status-grid>div{background:#182449;border:1px solid #8a7448;border-radius:8px;padding:10px;min-width:0}.status-grid small{display:block;font-size:11px}.status-grid strong{display:block;font-size:13px;overflow-wrap:anywhere;margin-top:5px}#bodyhistory summary{cursor:pointer;color:#ffe2a2;margin:12px 0}</style><style>.loot-item{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #70608d;border-radius:9px;padding:9px;margin:7px 0;background:#1b2445}.loot-item span{font-size:13px}.loot-item button{white-space:nowrap;font-size:12px;padding:8px}.loot-item button:disabled{opacity:.5}</style><style>
+/* iPhone-first: seven navigation tabs, one row, no horizontal overflow */
+main{padding:10px 10px 18px;max-width:650px}
+main>h1{font-size:clamp(17px,4.8vw,23px);margin:8px 2px 13px;white-space:nowrap;letter-spacing:-.03em}
+main>h1 small{font-size:.68em}
+.tabs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;flex-wrap:nowrap;width:100%;margin:0 0 9px}
+.tabs button{display:flex;align-items:center;justify-content:center;flex-direction:column;min-width:0;margin:0;padding:6px 0 5px;gap:3px;border-radius:9px;line-height:1.1;min-height:49px;touch-action:manipulation}
+.tabs .nav-emoji{font-size:clamp(17px,5vw,23px)}
+.tabs .nav-label{font-size:clamp(9px,2.5vw,11px);font-weight:700;white-space:nowrap}
+.tabs button:focus-visible{outline:2px solid #ffe49a;outline-offset:2px}
+.status-book{margin-top:7px;padding:12px}
+.status-head{margin-bottom:7px;font-size:18px}
+.avatar{max-width:min(100%,275px);margin-bottom:9px}
+.status-grid{gap:6px;margin:9px 0}
+.status-grid>div{padding:8px}
+.status-grid strong{font-size:12px}
+/* Chest reveal: tap to dismiss, reduced-motion safe */
+.chest-reveal{position:fixed;inset:0;z-index:10030;display:none;align-items:center;justify-content:center;background:rgba(8,5,22,.95);padding:18px;text-align:center}
+.chest-reveal.show{display:flex}
+.chest-reveal-card{position:relative;width:min(100%,390px);border:2px solid #f6c761;border-radius:20px;padding:26px 16px 20px;background:radial-gradient(circle at 50% 30%,#594082,#16112e 70%);box-shadow:0 0 40px #e4a83166;animation:chest-enter .55s ease-out both;overflow:hidden}
+.chest-reveal-card:before{content:'';position:absolute;inset:-70%;background:repeating-conic-gradient(from 0deg,#f4c45a33 0deg 9deg,transparent 9deg 20deg);animation:chest-rays 9s linear infinite;pointer-events:none}
+.chest-reveal-card>*{position:relative}
+.chest-symbol{font-size:90px;filter:drop-shadow(0 0 16px #ffd66a);animation:chest-pop .85s ease-in-out both}
+.chest-rarity{font-weight:900;color:#ffe5a3;letter-spacing:.14em;margin-top:10px}
+.chest-item-name{font-size:clamp(20px,6vw,29px);font-weight:900;color:#fff0bd;margin:12px 0;text-shadow:0 0 14px #ffc857}
+.chest-hint{font-size:12px;color:#e3d8ef}
+@keyframes chest-enter{from{opacity:0;transform:scale(.75)}to{opacity:1;transform:scale(1)}}
+@keyframes chest-pop{0%{transform:scale(.45) rotate(-12deg);opacity:0}55%{transform:scale(1.18) rotate(7deg);opacity:1}100%{transform:scale(1)}}
+@keyframes chest-rays{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.chest-reveal-card,.chest-symbol,.chest-reveal-card:before{animation:none}}
+@media(max-width:375px){main{padding:8px}.tabs{gap:2px}.tabs button{border-radius:7px}.avatar{max-width:245px}.status-grid>div{padding:7px}}
+</style></head><body><div id="chestReveal" class="chest-reveal" role="dialog" aria-modal="true" aria-label="宝箱の開封結果" tabindex="-1" onclick="closeChestReveal()"><div class="chest-reveal-card"><div class="chest-symbol" id="chestSymbol">🎁</div><div class="chest-rarity" id="chestRarity">TREASURE GET!</div><div class="chest-item-name" id="chestItemName"></div><p id="chestItemEffect"></p><p class="chest-hint">画面をタップして戻る</p></div></div><div id="bossEnding" class="boss-ending" onclick="advanceBossEnding()" role="button" tabindex="0" aria-label="タップで次へ"><h2 id="bossEndingTitle"></h2><img id="bossEndingImage" alt=""><p id="bossEndingText"></p><small>タップして続ける</small></div><main><h1>🐗 人生RPG <small>冒険者の書 v0.6.1</small></h1><div class="tabs"><button type="button" onclick="tab('home')" aria-label="HOME"><span class="nav-emoji">🏠</span><span class="nav-label">HOME</span></button><button type="button" onclick="tab('train')" aria-label="SYNC"><span class="nav-emoji">📥</span><span class="nav-label">SYNC</span></button><button type="button" onclick="tab('rest')" aria-label="REST"><span class="nav-emoji">🛌</span><span class="nav-label">REST</span></button><button type="button" onclick="tab('inventory')" aria-label="装備"><span class="nav-emoji">🎁</span><span class="nav-label">装備</span></button><button type="button" onclick="tab('titles')" aria-label="称号"><span class="nav-emoji">👑</span><span class="nav-label">称号</span></button><button type="button" onclick="tab('boss')" aria-label="BOSS"><span class="nav-emoji">👹</span><span class="nav-label">BOSS</span></button><button type="button" onclick="tab('report')" aria-label="記録"><span class="nav-emoji">📊</span><span class="nav-label">記録</span></button></div><section id="home" class="active"><div class="panel status-book">
 <div class="status-head">✦ 冒険者の書 ✦</div><div class="avatar"><img src="./hero-boar.png?v=050" alt="金髪ショートの拳闘士とイノシシの相棒" class="hero-portrait"></div>
 <div class="status-grid"><div><small>職業</small><strong>拳闘士</strong></div><div><small>レベル</small><strong id="hero">Lv.1</strong></div><div><small>武器</small><strong id="gear-weapon">🥊 修行のグローブ</strong></div><div><small>防具</small><strong id="gear-armor">🛡️ 冒険者のガード</strong></div><div><small>アクセサリー</small><strong id="gear-charm">🐗 相棒のお守り</strong></div><div><small>装備称号</small><strong id="equipped"></strong></div></div>
 <p>EXP <span id="exp"></span></p><progress id="xpbar" max="100" value="0"></progress>
@@ -261,8 +292,19 @@ function openChest(){
  const item=itemById(id),duplicate=l.items.includes(id);
  if(!duplicate)l.items.push(id);
  document.getElementById('lootMessage').textContent=duplicate?'🎁 '+item.name+'！ すでに所持しているため図鑑に記録済み。':'🎉 '+item.name+' を手に入れた！';
+ showChestReveal(item,duplicate);
  persist();
 }
+function showChestReveal(item,duplicate){
+ const e=document.getElementById('chestReveal');
+ document.getElementById('chestSymbol').textContent=item.boss?'👑':'🎁';
+ document.getElementById('chestRarity').textContent=duplicate?'DUPLICATE ITEM':'✨ TREASURE GET! ✨';
+ document.getElementById('chestItemName').textContent=item.name;
+ document.getElementById('chestItemEffect').textContent='攻撃 +'+item.atk+'% ／ 防御 +'+item.def+'%';
+ e.classList.add('show');e.focus();
+}
+function closeChestReveal(){document.getElementById('chestReveal').classList.remove('show')}
+document.getElementById('chestReveal').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '||e.key==='Escape'){e.preventDefault();closeChestReveal()}});
 function equipItem(id){const l=initLoot(),item=itemById(id);if(!item||!l.items.includes(id))return;l.gear[item.slot]=id;persist()}
 function grantBossDrop(month){const l=initLoot();if(l.bossDrops.includes(month))return;
  const idx=l.bossDrops.length,id=BOSS_POOL[idx%BOSS_POOL.length];l.bossDrops.push(month);
