@@ -40,18 +40,18 @@
 .effect-test-buttons{display:flex;flex-wrap:wrap;gap:5px;margin:9px 0}
 .effect-test-buttons button{font-size:13px;background:#51417c}
 /* DEV EFFECT TEST STYLE END */
-</style><style>.status-book{border:2px solid #c6a354;background:linear-gradient(160deg,#171f42,#10152d)}.status-head{text-align:center;color:#ffdf8a;letter-spacing:.15em;font-weight:900;font-size:20px;margin-bottom:14px}.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:15px 0}.status-grid>div{background:#182449;border:1px solid #8a7448;border-radius:8px;padding:10px;min-width:0}.status-grid small{display:block;font-size:11px}.status-grid strong{display:block;font-size:13px;overflow-wrap:anywhere;margin-top:5px}#bodyhistory summary{cursor:pointer;color:#ffe2a2;margin:12px 0}</style></head><body><div id="bossEnding" class="boss-ending" onclick="advanceBossEnding()" role="button" tabindex="0" aria-label="タップで次へ"><h2 id="bossEndingTitle"></h2><img id="bossEndingImage" alt=""><p id="bossEndingText"></p><small>タップして続ける</small></div><main><h1>🐗 人生RPG <small>冒険者の書 v0.5.1</small></h1><div class="tabs"><button onclick="tab('home')">🏠 HOME</button><button onclick="tab('train')">📥 SYNC</button><button onclick="tab('rest')">🛌 REST</button><button onclick="tab('titles')">👑 称号</button><button onclick="tab('boss')">👹 BOSS</button><button onclick="tab('report')">📊 REPORT</button></div><section id="home" class="active"><div class="panel status-book">
+</style><style>.status-book{border:2px solid #c6a354;background:linear-gradient(160deg,#171f42,#10152d)}.status-head{text-align:center;color:#ffdf8a;letter-spacing:.15em;font-weight:900;font-size:20px;margin-bottom:14px}.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:15px 0}.status-grid>div{background:#182449;border:1px solid #8a7448;border-radius:8px;padding:10px;min-width:0}.status-grid small{display:block;font-size:11px}.status-grid strong{display:block;font-size:13px;overflow-wrap:anywhere;margin-top:5px}#bodyhistory summary{cursor:pointer;color:#ffe2a2;margin:12px 0}</style><style>.loot-item{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #70608d;border-radius:9px;padding:9px;margin:7px 0;background:#1b2445}.loot-item span{font-size:13px}.loot-item button{white-space:nowrap;font-size:12px;padding:8px}.loot-item button:disabled{opacity:.5}</style></head><body><div id="bossEnding" class="boss-ending" onclick="advanceBossEnding()" role="button" tabindex="0" aria-label="タップで次へ"><h2 id="bossEndingTitle"></h2><img id="bossEndingImage" alt=""><p id="bossEndingText"></p><small>タップして続ける</small></div><main><h1>🐗 人生RPG <small>冒険者の書 v0.6.0</small></h1><div class="tabs"><button onclick="tab('home')">🏠 HOME</button><button onclick="tab('train')">📥 SYNC</button><button onclick="tab('rest')">🛌 REST</button><button onclick="tab('inventory')">🎁 装備</button><button onclick="tab('titles')">👑 称号</button><button onclick="tab('boss')">👹 BOSS</button><button onclick="tab('report')">📊 REPORT</button></div><section id="home" class="active"><div class="panel status-book">
 <div class="status-head">✦ 冒険者の書 ✦</div><div class="avatar"><img src="./hero-boar.png?v=050" alt="金髪ショートの拳闘士とイノシシの相棒" class="hero-portrait"></div>
-<div class="status-grid"><div><small>職業</small><strong>拳闘士</strong></div><div><small>レベル</small><strong id="hero">Lv.1</strong></div><div><small>武器</small><strong>🥊 修行のグローブ</strong></div><div><small>防具</small><strong>🛡️ 冒険者のガード</strong></div><div><small>アクセサリー</small><strong>🐗 相棒のお守り</strong></div><div><small>装備称号</small><strong id="equipped"></strong></div></div>
+<div class="status-grid"><div><small>職業</small><strong>拳闘士</strong></div><div><small>レベル</small><strong id="hero">Lv.1</strong></div><div><small>武器</small><strong id="gear-weapon">🥊 修行のグローブ</strong></div><div><small>防具</small><strong id="gear-armor">🛡️ 冒険者のガード</strong></div><div><small>アクセサリー</small><strong id="gear-charm">🐗 相棒のお守り</strong></div><div><small>装備称号</small><strong id="equipped"></strong></div></div>
 <p>EXP <span id="exp"></span></p><progress id="xpbar" max="100" value="0"></progress>
 <p>❤️ HP <span id="hp"></span> / <span id="maxhp">300</span></p><div class="bar"><div id="hpbar"></div></div>
 <p>⚡ STAMINA <span id="stamina"></span> / 100</p><div class="bar"><div id="stbar"></div></div>
-<small>装備品は今後の宝箱・ドロップ機能に向けた表示枠（能力補正は未実装）</small></div>
+<small>装備品の能力補正は魔王戦に反映されるで！</small></div>
 <div class="panel"><h2>⚖️ BODY STATUS</h2><div id="bodymsg" class="muted"></div><div id="bodyhistory"></div><small>体重はトレーニングアプリのJSONから同期。入力欄はありません。</small></div>
 </section><section id="train"><div class="panel"><h2>📥 トレーニング記録を同期</h2>
 <p>トレーニング終了後、トレーニングアプリのJSONを読み込んでな。日付ごとに差分を更新するから、同じファイルを何度読み込んでも二重加算しないで！</p>
 <label style="display:block">📂 トレーニングアプリのJSON <input type="file" accept=".json,application/json" onchange="importTrainingJSON(event)" style="width:100%;max-width:100%;box-sizing:border-box"></label>
-<p id="syncmsg" class="muted">未同期</p><div id="syncsummary"></div></div></section><section id="rest"><div class="panel"><h2>🏨 宿屋で回復</h2><label>夜間睡眠 時間 <input id="sleep" type="number" min="0" max="24" step="0.5" value="7"></label><button onclick="restLog('sleep')">睡眠記録</button><br><label>昼寝 分 <input id="nap" type="number" min="0" max="240" value="20"></label><button onclick="restLog('nap')">昼寝記録</button><p>睡眠時間に応じてHPとスタミナが回復するゲーム演出やで！</p></div></section><section id="titles"><div class="panel"><h2>👑 称号図鑑</h2><div id="titlelist"></div></div></section><section id="boss"><div class="panel boss-panel"><div class="boss-heading">MONTHLY BOSS</div><h2>👹 沈黙の魔王 オッサン</h2><img class="boss-art" src="./boss-scene.png?v=20261029-complete-v3" alt="金髪ショートのナオとイノシシが、玉座の魔王オッサンに挑むRPG戦闘画面"><p class="muted">同期した今月の修行で魔王を攻撃！ 魔王も反撃してくる。宿屋でHPを回復して挑もう。</p><div id="bossCutin" class="boss-cutin" aria-hidden="true"><img src="./boss-attack.png?v=20261029-complete-v3" alt=""><strong id="bossCutinDamage"></strong></div><div id="bossCounterCutin" class="boss-counter-cutin" aria-hidden="true"><div class="counter-frame"><div class="counter-head">👹 魔王の反撃！</div><div id="bossCounterLine" class="counter-line"></div><div id="bossCounterValue" class="counter-value"></div></div></div><div id="bossStatus"></div>
+<p id="syncmsg" class="muted">未同期</p><div id="syncsummary"></div></div></section><section id="rest"><div class="panel"><h2>🏨 宿屋で回復</h2><label>夜間睡眠 時間 <input id="sleep" type="number" min="0" max="24" step="0.5" value="7"></label><button onclick="restLog('sleep')">睡眠記録</button><br><label>昼寝 分 <input id="nap" type="number" min="0" max="240" value="20"></label><button onclick="restLog('nap')">昼寝記録</button><p>睡眠時間に応じてHPとスタミナが回復するゲーム演出やで！</p></div></section><section id="inventory"><div class="panel"><h2>🎁 宝箱と装備品</h2><p>修行した日を5日積み重ねるたびに宝箱を1個獲得！ 同じJSONを再同期しても増えへんで。</p><div id="chestSummary"></div><button type="button" onclick="openChest()">🎁 宝箱を開ける</button><p id="lootMessage" aria-live="polite"></p><h3>⚔️ 所持品</h3><div id="inventoryList"></div></div></section><section id="titles"><div class="panel"><h2>👑 称号図鑑</h2><div id="titlelist"></div></div></section><section id="boss"><div class="panel boss-panel"><div class="boss-heading">MONTHLY BOSS</div><h2>👹 沈黙の魔王 オッサン</h2><img class="boss-art" src="./boss-scene.png?v=20261029-complete-v3" alt="金髪ショートのナオとイノシシが、玉座の魔王オッサンに挑むRPG戦闘画面"><p class="muted">同期した今月の修行で魔王を攻撃！ 魔王も反撃してくる。宿屋でHPを回復して挑もう。</p><div id="bossCutin" class="boss-cutin" aria-hidden="true"><img src="./boss-attack.png?v=20261029-complete-v3" alt=""><strong id="bossCutinDamage"></strong></div><div id="bossCounterCutin" class="boss-counter-cutin" aria-hidden="true"><div class="counter-frame"><div class="counter-head">👹 魔王の反撃！</div><div id="bossCounterLine" class="counter-line"></div><div id="bossCounterValue" class="counter-value"></div></div></div><div id="bossStatus"></div>
 <!-- DEV EFFECT TEST START: remove this whole block for release -->
 <details id="bossEffectTester" class="boss-effect-tester"><summary>🧪 開発用：演出テスト（記録・HPは変更しません）</summary>
 <div class="effect-test-buttons">
@@ -222,7 +222,64 @@ function importTrainingJSON(event){
  };
  reader.readAsText(file);
 }
-function render(){let lvl=Math.floor(s.exp/1000)+1;document.getElementById('hero').textContent='Lv.'+lvl;document.getElementById('exp').textContent=s.exp+' / 次まで '+(1000-s.exp%1000);document.getElementById('xpbar').value=s.exp%1000/10;document.getElementById('hp').textContent=s.hp;document.getElementById('maxhp').textContent=heroMaxHP();document.getElementById('stamina').textContent=s.stamina;document.getElementById('hpbar').style.width=(100*s.hp/heroMaxHP())+'%';document.getElementById('stbar').style.width=s.stamina+'%';document.getElementById('equipped').textContent=s.equipped?'👑 '+s.equipped:'称号なし';renderBodyHistory();renderSyncSummary();document.getElementById('titlelist').innerHTML='<p>獲得 '+s.unlocked.length+' 称号</p>'+s.unlocked.map(t=>'<div class="stat" style="margin:6px 0"><strong>👑 '+safeTitleHTML(t)+'</strong><div class="title-condition">解放条件：'+safeTitleHTML(titleRequirement(t))+'</div><div class="title-date">'+safeTitleHTML(titleDate(t))+'</div><button onclick="equip('+JSON.stringify(t).replace(/"/g,'&quot;')+')">装備</button><button onclick="replayTitle('+JSON.stringify(t).replace(/"/g,'&quot;')+')">✨ 演出再生</button></div>').join('');let total=s.logs.length,run=s.logs.filter(x=>x.type==='run').reduce((a,x)=>a+x.value,0),shadow=s.logs.filter(x=>x.type==='shadow').reduce((a,x)=>a+x.value,0);document.getElementById('reportbody').innerHTML='<p>総EXP：'+s.exp+' / 記録件数：'+total+'</p><p>RUN累計：'+run.toFixed(2)+'km / シャドー累計：'+shadow+'R</p><p>筋トレ A〜D：'+s.counts.join(' / ')+'</p><p>称号：'+s.unlocked.length+'個</p><h3>直近の記録</h3><table><tr><th>日時</th><th>内容</th><th>値</th></tr>'+s.logs.slice(-30).reverse().map(x=>'<tr><td>'+new Date(x.date).toLocaleDateString('ja-JP')+'</td><td>'+x.type+'</td><td>'+x.value+'</td></tr>').join('')+'</table>'}function equip(t){s.equipped=t;persist()}function exportData(){let blob=new Blob([JSON.stringify(s,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='life-rpg-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.counts)||d.counts.length!==4||!d.counts.every(v=>Number.isSafeInteger(v)&&v>=0)||!Array.isArray(d.logs)||!Array.isArray(d.unlocked)||!Number.isFinite(d.exp))throw Error();if(confirm('現在の記録を置き換えるで？')){s=d;persist()}}catch{alert('バックアップ形式を確認してな')}};r.readAsText(f)}
+
+const ITEM_CATALOG=[
+ {id:'starter-glove',slot:'weapon',name:'🥊 修行のグローブ',atk:0,def:0},
+ {id:'starter-guard',slot:'armor',name:'🛡️ 冒険者のガード',atk:0,def:0},
+ {id:'starter-boar',slot:'charm',name:'🐗 相棒のお守り',atk:0,def:0},
+ {id:'jab-glove',slot:'weapon',name:'🥊 刺突のグローブ',atk:3,def:0},
+ {id:'gold-glove',slot:'weapon',name:'✨ 黄金の拳',atk:6,def:0},
+ {id:'run-boots',slot:'charm',name:'👟 疾風の足輪',atk:2,def:1},
+ {id:'boar-fang',slot:'charm',name:'🐗 猪突のお守り',atk:4,def:0},
+ {id:'guard-armor',slot:'armor',name:'🛡️ 鉄壁のガード',atk:0,def:4},
+ {id:'silent-shield',slot:'armor',name:'🛡️ 既読無視の盾',atk:0,def:7},
+ {id:'boss-crown',slot:'charm',name:'👑 沈黙の王冠',atk:5,def:5,boss:true},
+ {id:'boss-glove',slot:'weapon',name:'👹 破門の拳',atk:10,def:0,boss:true},
+ {id:'boss-shield',slot:'armor',name:'🛡️ 検討中の盾',atk:0,def:10,boss:true}
+];
+const CHEST_POOL=['jab-glove','gold-glove','run-boots','boar-fang','guard-armor','silent-shield'];
+const BOSS_POOL=['boss-crown','boss-glove','boss-shield'];
+function initLoot(){
+ if(!s.loot||typeof s.loot!=='object')s.loot={};
+ const l=s.loot;
+ if(!Array.isArray(l.items))l.items=['starter-glove','starter-guard','starter-boar'];
+ if(!l.gear||typeof l.gear!=='object')l.gear={weapon:'starter-glove',armor:'starter-guard',charm:'starter-boar'};
+ if(!Array.isArray(l.claimed))l.claimed=[];
+ if(!Array.isArray(l.opened))l.opened=[];
+ if(!Array.isArray(l.bossDrops))l.bossDrops=[];
+ return l;
+}
+function itemById(id){return ITEM_CATALOG.find(x=>x.id===id)}
+function gearStats(){const l=initLoot();return Object.values(l.gear).reduce((a,id)=>{let x=itemById(id);if(x){a.atk+=x.atk;a.def+=x.def}return a},{atk:0,def:0})}
+function chestEligible(){const dates=Object.entries(s.trainingSnapshots||{}).filter(([date,v])=>v&&((v.strength||[]).some(Boolean)||v.run>0||v.shadow>0||v.bag>0||v.personal>0)).map(([date])=>date).sort();return Math.floor(dates.length/5)}
+function availableChests(){const l=initLoot();return Math.max(0,chestEligible()-l.opened.length)}
+function openChest(){
+ if(availableChests()<=0){document.getElementById('lootMessage').textContent='まだ宝箱はないで！ 修行5日で1個獲得や。';return}
+ const l=initLoot(),chestNo=l.opened.length+1;
+ // Deterministic reward for each chest, independent of repeated imports or reloads.
+ const id=CHEST_POOL[(chestNo*7+3)%CHEST_POOL.length];l.opened.push(chestNo);
+ const item=itemById(id),duplicate=l.items.includes(id);
+ if(!duplicate)l.items.push(id);
+ document.getElementById('lootMessage').textContent=duplicate?'🎁 '+item.name+'！ すでに所持しているため図鑑に記録済み。':'🎉 '+item.name+' を手に入れた！';
+ persist();
+}
+function equipItem(id){const l=initLoot(),item=itemById(id);if(!item||!l.items.includes(id))return;l.gear[item.slot]=id;persist()}
+function grantBossDrop(month){const l=initLoot();if(l.bossDrops.includes(month))return;
+ const idx=l.bossDrops.length,id=BOSS_POOL[idx%BOSS_POOL.length];l.bossDrops.push(month);
+ if(!l.items.includes(id))l.items.push(id);
+ const el=document.getElementById('lootMessage');if(el)el.textContent='👑 魔王討伐報酬：'+itemById(id).name+' を獲得！';
+}
+function renderInventory(){const l=initLoot(),stat=gearStats();
+ document.getElementById('gear-weapon').textContent=itemById(l.gear.weapon)?.name||'なし';
+ document.getElementById('gear-armor').textContent=itemById(l.gear.armor)?.name||'なし';
+ document.getElementById('gear-charm').textContent=itemById(l.gear.charm)?.name||'なし';
+ document.getElementById('chestSummary').textContent='🎁 未開封 '+availableChests()+'個 ／ 開封済み '+l.opened.length+'個 ／ 攻撃補正 +'+stat.atk+'% ／ 反撃軽減 '+stat.def+'%';
+ const area=document.getElementById('inventoryList');area.replaceChildren();
+ for(const id of l.items){const item=itemById(id);if(!item)continue;
+ const line=document.createElement('div');line.className='loot-item';const name=document.createElement('span');name.textContent=item.name+'　攻撃+'+item.atk+'%／防御+'+item.def+'%'+(item.boss?' 👑限定':'');
+ const btn=document.createElement('button');btn.type='button';btn.textContent=l.gear[item.slot]===id?'装備中':'装備する';btn.disabled=l.gear[item.slot]===id;btn.onclick=()=>equipItem(id);line.append(name,btn);area.appendChild(line)}
+}
+function render(){let lvl=Math.floor(s.exp/1000)+1;document.getElementById('hero').textContent='Lv.'+lvl;document.getElementById('exp').textContent=s.exp+' / 次まで '+(1000-s.exp%1000);document.getElementById('xpbar').value=s.exp%1000/10;document.getElementById('hp').textContent=s.hp;document.getElementById('maxhp').textContent=heroMaxHP();document.getElementById('stamina').textContent=s.stamina;document.getElementById('hpbar').style.width=(100*s.hp/heroMaxHP())+'%';document.getElementById('stbar').style.width=s.stamina+'%';document.getElementById('equipped').textContent=s.equipped?'👑 '+s.equipped:'称号なし';renderBodyHistory();renderSyncSummary();renderInventory();document.getElementById('titlelist').innerHTML='<p>獲得 '+s.unlocked.length+' 称号</p>'+s.unlocked.map(t=>'<div class="stat" style="margin:6px 0"><strong>👑 '+safeTitleHTML(t)+'</strong><div class="title-condition">解放条件：'+safeTitleHTML(titleRequirement(t))+'</div><div class="title-date">'+safeTitleHTML(titleDate(t))+'</div><button onclick="equip('+JSON.stringify(t).replace(/"/g,'&quot;')+')">装備</button><button onclick="replayTitle('+JSON.stringify(t).replace(/"/g,'&quot;')+')">✨ 演出再生</button></div>').join('');let total=s.logs.length,run=s.logs.filter(x=>x.type==='run').reduce((a,x)=>a+x.value,0),shadow=s.logs.filter(x=>x.type==='shadow').reduce((a,x)=>a+x.value,0);document.getElementById('reportbody').innerHTML='<p>総EXP：'+s.exp+' / 記録件数：'+total+'</p><p>RUN累計：'+run.toFixed(2)+'km / シャドー累計：'+shadow+'R</p><p>筋トレ A〜D：'+s.counts.join(' / ')+'</p><p>称号：'+s.unlocked.length+'個</p><h3>直近の記録</h3><table><tr><th>日時</th><th>内容</th><th>値</th></tr>'+s.logs.slice(-30).reverse().map(x=>'<tr><td>'+new Date(x.date).toLocaleDateString('ja-JP')+'</td><td>'+x.type+'</td><td>'+x.value+'</td></tr>').join('')+'</table>'}function equip(t){s.equipped=t;persist()}function exportData(){let blob=new Blob([JSON.stringify(s,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='life-rpg-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.counts)||d.counts.length!==4||!d.counts.every(v=>Number.isSafeInteger(v)&&v>=0)||!Array.isArray(d.logs)||!Array.isArray(d.unlocked)||!Number.isFinite(d.exp))throw Error();if(confirm('現在の記録を置き換えるで？')){s=d;persist()}}catch{alert('バックアップ形式を確認してな')}};r.readAsText(f)}
 const BOSS_BASE_HP=8000;
 function heroMaxHP(){return 300+5*Math.floor(Math.max(0,Number(s.exp)||0)/1000)}
 function bossMaxHP(){return Math.round(BOSS_BASE_HP*Math.pow(1.05,Math.max(0,Number(s.bossWins)||0)))}
@@ -258,7 +315,7 @@ if(b.needsPowerMigration){
  b.needsPowerMigration=false;
 }
 return b}
-function renderBoss(){let el=document.getElementById('bossStatus');if(!el)return;let b=bossState(),p=bossPoints(),max=b.maxHp,hp=Math.max(0,max-b.attacked);el.innerHTML='<p><b>👹 HP '+hp.toLocaleString('ja-JP')+' / '+max.toLocaleString('ja-JP')+'</b></p><div class="boss-meter"><div style="width:'+(hp/max*100)+'%"></div></div><div class="boss-metrics">今月の攻撃力：<b>'+p.damage.toLocaleString('ja-JP')+'</b><br>筋トレ '+p.strength+'回 / RUN '+p.run.toFixed(2)+'km / シャドー '+p.shadow+'R'+(p.bag?' / バッグ '+p.bag+'R':'')+(p.spar?' / 実戦 '+p.spar+'R':'')+'</div><p class="muted">'+(b.defeated?'👑 今月の魔王は撃破済み！':'⚔️ 未使用の攻撃力：'+Math.max(0,p.damage-b.attacked).toLocaleString('ja-JP'))+'</p>'}
+function renderBoss(){let el=document.getElementById('bossStatus');if(!el)return;let b=bossState(),p=bossPoints(),max=b.maxHp,hp=Math.max(0,max-b.attacked-(b.bonusDamage||0));el.innerHTML='<p><b>👹 HP '+hp.toLocaleString('ja-JP')+' / '+max.toLocaleString('ja-JP')+'</b></p><div class="boss-meter"><div style="width:'+(hp/max*100)+'%"></div></div><div class="boss-metrics">今月の攻撃力：<b>'+p.damage.toLocaleString('ja-JP')+'</b><br>筋トレ '+p.strength+'回 / RUN '+p.run.toFixed(2)+'km / シャドー '+p.shadow+'R'+(p.bag?' / バッグ '+p.bag+'R':'')+(p.spar?' / 実戦 '+p.spar+'R':'')+'</div><p class="muted">'+(b.defeated?'👑 今月の魔王は撃破済み！':'⚔️ 未使用の攻撃力：'+Math.max(0,p.damage-b.attacked).toLocaleString('ja-JP'))+'</p>'}
 const BOSS_VOICES=[
  {line:'いらんやん',kind:'hit',effect:'冷たい否定'},
  {line:'せんでよい',kind:'block',effect:'行動拒否'},
@@ -315,16 +372,16 @@ function fightBoss(){
  let b=bossState(),p=bossPoints();
  if(b.defeated){showBossVoice('👑 今月は討伐済み。',{line:'来月から考えときます……',kind:'delay',effect:'翌月復活待ち'});return}
  if(s.hp<=0){showBossVoice('💀 HPが0！ 宿屋で回復してから再挑戦や。',{line:'せんでよい',kind:'ban',effect:'戦闘不能・宿屋で回復'});return}
- let damage=Math.max(0,p.damage-b.attacked);
+ let damage=Math.max(0,p.damage-b.attacked);let actualDamage=Math.round(damage*(1+gearStats().atk/100));
  if(!damage){showBossVoice('⚔️ 未使用の攻撃力がないで。',{line:'……考えときます',kind:'silence',effect:'新しい修行を記録すると攻撃可能'});return}
- clearBossCutins();document.getElementById('bossCutinDamage').textContent=damage.toLocaleString('ja-JP')+' DMG!';playBossCutin('bossCutin');
- b.attacked+=damage;let hp=Math.max(0,b.maxHp-b.attacked);
- if(!hp){b.defeated=true;s.bossWins=(s.bossWins||0)+1;showBossVoice('💥 '+damage.toLocaleString('ja-JP')+'ダメージ！ 魔王オッサンを撃破！！',{line:'……わかりました',kind:'critical',effect:'魔王撃破'});setTimeout(showBossVictory,2700);}
+ clearBossCutins();document.getElementById('bossCutinDamage').textContent=actualDamage.toLocaleString('ja-JP')+' DMG!';playBossCutin('bossCutin');
+ b.attacked+=damage;b.bonusDamage=(b.bonusDamage||0)+(actualDamage-damage);let hp=Math.max(0,b.maxHp-b.attacked-b.bonusDamage);
+ if(!hp){b.defeated=true;s.bossWins=(s.bossWins||0)+1;grantBossDrop(bossMonth());showBossVoice('💥 '+actualDamage.toLocaleString('ja-JP')+'ダメージ！ 魔王オッサンを撃破！！',{line:'……わかりました',kind:'critical',effect:'魔王撃破'});setTimeout(showBossVictory,2700);}
  else{
-  const voice=chooseBossVoice(hp),counter=bossCounterDamage(voice);
+  const voice=chooseBossVoice(hp),counter=Math.max(1,Math.round(bossCounterDamage(voice)*(1-gearStats().def/100)));
   s.hp=Math.max(0,s.hp-counter);document.getElementById('bossCounterLine').textContent='「'+voice.line+'」';document.getElementById('bossCounterValue').textContent='HP −'+counter+'！';playBossCutin('bossCounterCutin',2450);
   const status=s.hp===0?' 💀戦闘不能！ 宿屋で回復してな。':' ❤️残りHP '+s.hp+'。';
-  showBossVoice('⚔️ '+damage.toLocaleString('ja-JP')+'ダメージ！ 魔王残りHP '+hp.toLocaleString('ja-JP')+'。\n👹 反撃！ '+counter+'ダメージ！'+status,voice);
+  showBossVoice('⚔️ '+actualDamage.toLocaleString('ja-JP')+'ダメージ！ 魔王残りHP '+hp.toLocaleString('ja-JP')+'。\n👹 反撃！ '+counter+'ダメージ！'+status,voice);
  }
  persist();renderBoss();
 }
